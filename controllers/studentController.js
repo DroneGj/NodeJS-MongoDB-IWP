@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  if (require.body._id == "") {
+  if (req.body._id == "") {
     insertRecord(req, res);
   } else {
     updateRecord(req, res);
@@ -34,7 +34,7 @@ function insertRecord(req, res) {
 
 function updateRecord(req, res) {
   Student.findOneAndUpdate(
-    { _id: require.body._id },
+    { _id: req.body._id },
     req.body,
     { new: true },
     (err, doc) => {
